@@ -1,31 +1,151 @@
-Deep Multi-Agent Reinforcement Learning for Autonomous Financial Trading
-This repository contains the source code for our trading project. It explores the application of Deep Reinforcement Learning (DRL) to algorithmic trading, aiming to solve the vulnerability of monolithic DRL agents to macroeconomic shocks and systemic market crashes.
-📌 Project Overview
-Traditional RL agents often struggle to balance the contradictory goals of short-term profit maximization and long-term capital preservation. To address this, we developed and compared two architectures:
-Single Agent (Baseline): A monolithic agent using Conv1D + GRU and PPO. While it generalizes well on stable assets (60% zero-shot generalization), it suffers from severe drawdowns (up to -46%) during high market volatility due to "macroeconomic blindness".
-Dual Agent (Proposed Architecture): A hierarchical Multi-Agent system. It decouples the trading signal from risk management:
-The Trader: Uses a TCN + GRU network to extract local micro-economic trends.
-The Risk Manager: An independent MLP network that dynamically scales the Trader's maximum exposure based on global macroeconomic stress (normalized VIX index).
-📂 Repository Structure
-Single_Agent/ : Contains the baseline model codebase.
-data_prep.py: Feature engineering (Log returns, relative volatility).
-env.py: Custom Gymnasium environment.
-rnn_agent.py: Conv1D + GRU feature extractor.
-train.py & test.py: Training and evaluation scripts.
-trading_dual_agent/ : Contains the proposed Multi-Agent architecture.
-risk_manager.py: VIX-driven Risk Manager environment and controller.
-models.py: TCN + GRU architecture avoiding look-ahead bias via causal dilations.
-train_rm.py: Independent training script for the Risk Manager.
-train.py: Training script for the Trader under RM constraints.
-evaluate_dual_...py: Comprehensive backtesting and extreme stress-testing scripts.
-🚀 Key Results
-The Dual Agent architecture proved to be highly robust and "production-ready", achieving:
-80% Win Rate against the Buy & Hold benchmark across a diverse panel of 10 assets.
-Exceptional Capital Preservation: Survived the 2008 Subprime and 2020 COVID crashes, reducing the average Maximum Drawdown to just 3.0%.
-Massive Long-Term Outperformance: Generated +2090% on AAPL over a 10-year backtest (2015-2025) compared to +796% for the market.
-Zero Overfitting: Statistical validation confirmed a minimal 1.7pp gap between In-Sample and Out-of-Sample performance.
-🛠️ Requirements & Installation
-To run this project, you need the following libraries:
-code
-Bash
-pip install torch numpy pandas yfinance stable-baselines3 gymnasium plotly   modify engineering graduation model
+# Deep Multi-Agent Reinforcement Learning for Autonomous Financial Trading
+
+This repository presents a Deep Reinforcement Learning (DRL) framework for autonomous financial trading. The project investigates the limitations of traditional monolithic trading agents and proposes a hierarchical Multi-Agent architecture designed to improve robustness, risk management, and long-term performance during periods of market stress and macroeconomic uncertainty.
+
+## 📌 Project Overview
+
+Traditional DRL-based trading systems often struggle to balance two conflicting objectives:
+
+* Maximizing short-term returns.
+* Preserving capital during periods of extreme market volatility.
+
+To address this challenge, two architectures were developed and evaluated:
+
+### 1. Single Agent (Baseline)
+
+A monolithic trading agent based on:
+
+* Conv1D for local pattern extraction.
+* GRU for temporal dependency modeling.
+* PPO (Proximal Policy Optimization) for policy learning.
+
+Although the model demonstrates strong generalization capabilities on stable assets (60% zero-shot generalization), it remains vulnerable to major market crashes due to the absence of explicit macroeconomic awareness.
+
+### 2. Dual Agent (Proposed Architecture)
+
+A hierarchical Multi-Agent Reinforcement Learning framework that separates trading decisions from risk management.
+
+#### Trader Agent
+
+* TCN (Temporal Convolutional Network)
+* GRU (Gated Recurrent Unit)
+* PPO optimization
+
+The Trader focuses on identifying local market opportunities and generating trading signals.
+
+#### Risk Manager Agent
+
+* Independent MLP controller
+* Driven by a normalized VIX index
+
+The Risk Manager dynamically adjusts the Trader's maximum market exposure according to global market stress conditions, improving capital preservation during crises.
+
+---
+
+## 📂 Repository Structure
+
+```text
+.
+├── Single_Agent/
+│   ├── data_prep.py
+│   ├── env.py
+│   ├── rnn_agent.py
+│   ├── train.py
+│   └── test.py
+│
+└── trading_dual_agent/
+    ├── risk_manager.py
+    ├── models.py
+    ├── train_rm.py
+    ├── train.py
+    └── evaluate_dual_*.py
+```
+
+### Single_Agent/
+
+Baseline DRL implementation:
+
+* `data_prep.py` — Feature engineering (log returns, relative volatility).
+* `env.py` — Custom Gymnasium trading environment.
+* `rnn_agent.py` — Conv1D + GRU feature extractor.
+* `train.py` — Training pipeline.
+* `test.py` — Evaluation and backtesting.
+
+### trading_dual_agent/
+
+Multi-Agent architecture:
+
+* `risk_manager.py` — Risk Manager environment and controller.
+* `models.py` — TCN + GRU architecture with causal dilations.
+* `train_rm.py` — Risk Manager training.
+* `train.py` — Trader training under risk constraints.
+* `evaluate_dual_*.py` — Backtesting and stress-testing scripts.
+
+---
+
+## 🚀 Key Results
+
+The proposed Dual Agent architecture demonstrated strong robustness across diverse market regimes:
+
+* **80% Win Rate** against the Buy & Hold benchmark across a panel of 10 financial assets.
+* **Average Maximum Drawdown reduced to 3.0%** during major market crises.
+* **Successful navigation of the 2008 Subprime Crisis and the 2020 COVID-19 Crash.**
+* **+2090% cumulative return on AAPL (2015–2025)** compared with **+796%** for Buy & Hold.
+* **Minimal overfitting**, with only a **1.7 percentage point gap** between in-sample and out-of-sample performance.
+
+---
+
+## 🛠️ Installation
+
+Install the required dependencies:
+
+```bash
+pip install torch numpy pandas yfinance stable-baselines3 gymnasium plotly
+```
+
+## ▶️ Usage
+
+Train the baseline model:
+
+```bash
+python Single_Agent/train.py
+```
+
+Train the Risk Manager:
+
+```bash
+python trading_dual_agent/train_rm.py
+```
+
+Train the Dual-Agent system:
+
+```bash
+python trading_dual_agent/train.py
+```
+
+Run evaluation:
+
+```bash
+python trading_dual_agent/evaluate_dual.py
+```
+
+---
+
+## 📊 Research Focus
+
+* Deep Reinforcement Learning
+* Algorithmic Trading
+* Multi-Agent Systems
+* Risk-Aware Portfolio Management
+* Temporal Convolutional Networks (TCN)
+* Gated Recurrent Units (GRU)
+* Proximal Policy Optimization (PPO)
+
+---
+
+## 👥 Authors
+
+* Oumaima Dribi Alaoui
+* Fatima-Zahrae Farfari
+
+
