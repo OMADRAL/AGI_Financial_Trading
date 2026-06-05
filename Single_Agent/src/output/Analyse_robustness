@@ -1,0 +1,47 @@
+
+==================================================
+DIAGNOSTIC ROBUSTESSE (UNSEEN) : HOOD
+==================================================
+            Régime  Exposition IA (%)  Capture Mouvement (%)  Win Rate J. (%)
+              Bear              57.43                  58.31             0.00
+              Bull              46.69                  43.02            46.69
+           Neutral              38.46                 144.34            19.23
+RISQUE ÉLEVÉ (VOL)              28.81                  23.57            16.10
+
+==================================================
+DIAGNOSTIC ROBUSTESSE (UNSEEN) : PLTR
+==================================================
+            Régime  Exposition IA (%)  Capture Mouvement (%)  Win Rate J. (%)
+              Bear              57.42                  58.22             0.00
+              Bull              59.91                  60.23            59.91
+           Neutral              58.82                  91.49            23.53
+RISQUE ÉLEVÉ (VOL)              45.76                  37.41            29.66
+
+==================================================
+DIAGNOSTIC ROBUSTESSE (UNSEEN) : MCD
+==================================================
+            Régime  Exposition IA (%)  Capture Mouvement (%)  Win Rate J. (%)
+              Bear              97.73                  96.88             0.00
+              Bull              98.49                  98.18            98.49
+           Neutral             100.00                 100.00            50.53
+RISQUE ÉLEVÉ (VOL)              95.76                 123.60            50.00
+
+==================================================
+DIAGNOSTIC ROBUSTESSE (UNSEEN) : XOM
+==================================================
+            Régime  Exposition IA (%)  Capture Mouvement (%)  Win Rate J. (%)
+              Bear              88.38                  86.55             0.00
+              Bull              89.00                  88.02            89.00
+           Neutral              88.89                 107.18            44.44
+RISQUE ÉLEVÉ (VOL)              76.27                  -0.85            42.37
+
+==================================================
+DIAGNOSTIC ROBUSTESSE (UNSEEN) : DIS
+==================================================
+            Régime  Exposition IA (%)  Capture Mouvement (%)  Win Rate J. (%)
+              Bear              83.08                  82.47             0.00
+              Bull              81.41                  85.74            81.41
+           Neutral              75.00                 -37.24            34.21
+RISQUE ÉLEVÉ (VOL)              63.56                  31.54            29.66
+
+C:\Users\Ouma\Desktop\trading_final\src>
